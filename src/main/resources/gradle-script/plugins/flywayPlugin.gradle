@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.2.0"
+    }
+}
+
+apply plugin: org.flywaydb.gradle.FlywayPlugin
+
+sourceSets {
+    main {
+        java {
+            srcDir "src/migration/java"
+        }
+    }
+}
+
+dependencies {
+    compile "org.flywaydb:flyway-core:4.2.0"
+}
+
+// ./gradlew :domain:flywayMigrate -Dspring.profiles.active=default -Dflyway.extLocation=src/migration/data --stacktrace
+String profile = System.getProperty("spring.profiles.active", "default");
+String extLocation = System.getProperty("flyway.extLocation");
+def properties = new Properties();
+
+File migrationProperties = file("src/migration/flyway-${profile}.properties");
+if (migrationProperties.exists()) {
+    migrationProperties.withReader { reader ->
+        properties.load(reader)
+        properties.each { key, value ->
+            project.ext[key] = value
+        }
+    }
+    String sqlPath = file('src/migration/sql').absolutePath
+    String extPath;
+    logger.info("Flyway SQL Path : ${sqlPath}")
+    if(extLocation != null){
+        extPath = file(extLocation).absolutePath;
+        project.ext['flyway.locations'] = "filesystem:${sqlPath},filesystem:${extPath},classpath:./"
+    }else {
+        project.ext['flyway.locations'] = "filesystem:${sqlPath},classpath:./"
+    }
+}
+
+
+flywayMigrate.dependsOn compileJava

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="jdbc.basicDataSource.driverClassName">com.mysql.jdbc.Driver</entry>
+    <entry key="jdbc.basicDataSource.url">jdbc:mysql://localhost:3306/spring_seed?characterSetResults=utf8</entry>
+    <entry key="jdbc.basicDataSource.username">dml</entry>
+    <entry key="jdbc.basicDataSource.password">dml</entry>
+    <entry key="jdbc.basicDataSource.maxTotal">10</entry>
+    <entry key="jdbc.basicDataSource.minIdle">2</entry>
+    <entry key="jdbc.basicDataSource.timeBetweenEvictionRunsMillis">60000</entry>
+    <entry key="jdbc.basicDataSource.minEvictableIdleTimeMillis">180000</entry>
+
+    <entry key="redis.sentinel.master">mymaster</entry>
+    <entry key="redis.sentinel.nodes">127.0.0.1:26379</entry>
+    <entry key="redis.jedisConnectionFactory.timeout">1000</entry>
+
+    <entry key="jwt.secret">mysecret</entry>
+</properties>

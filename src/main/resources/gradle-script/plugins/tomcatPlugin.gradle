@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+    }
+}
+apply plugin: 'war'
+apply plugin: com.bmuschko.gradle.tomcat.TomcatPlugin
+
+dependencies {
+
+    def tomcatVersion = '7.0.76'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+tomcat {
+    httpPort = 8080
+    enableSSL = false
+    contextPath = ''
+}
+
+[tomcatRun, tomcatRunWar]*.URIEncoding = 'UTF-8'
+[tomcatRun, tomcatRunWar]*.contextPath = ''
+
+[tomcatRun, tomcatRunWar]*.doFirst {
+    def springActiveProfile = System.getProperty('spring.profiles.active', 'default')
+    System.setProperty('spring.profiles.active', springActiveProfile)
+    logger.error("Setting tomcatRun systemp property spring.profiles.active=${springActiveProfile}")
+}

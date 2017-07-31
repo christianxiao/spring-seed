@@ -1,0 +1,134 @@
+configurations {
+    all.collect { configuration ->
+        configuration.exclude group: 'commons-logging', module: 'commons-logging'
+        configuration.exclude group: 'log4j', module: 'log4j'
+        configuration.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        configuration.exclude group: 'org.slf4j', module: 'slf4j-jcl'
+        configuration.exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+    }
+}
+
+ext {
+    springframeworkVersion = '4.2.5.RELEASE'
+    aspectjVersion = '1.6.8'
+
+    springBatchVersion = '3.0.7.RELEASE'
+
+    springDataRedisVersion = '1.6.6.RELEASE'
+    jedisVersion = '2.4.2'
+
+    springDataJpaVersion = '1.8.0.RELEASE'
+    queryDslVersion = '3.6.7'
+
+    springfoxSwagger2Version = '2.7.0'
+
+
+    slf4jVersion = '1.7.12'
+    logbackVersion = '1.1.3'
+
+    hibernateVersion = '4.3.8.Final'
+
+    guavaVersion = '18.0'
+
+    jackson2Version = '2.6.7'
+
+    junitVersion = '4.11'
+}
+
+dependencies {
+    compileOnly 'javax.servlet:javax.servlet-api:3.0.1'
+    compileOnly 'javax.servlet.jsp:jsp-api:2.1'
+    //compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version: '1.2.5'
+    //compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: '1.2.5'
+
+    //compile apacheCommons
+    compile "commons-io:commons-io:2.4"
+    compile "org.apache.commons:commons-lang3:3.3.2"
+    compile "commons-codec:commons-codec:1.9"
+    compile "commons-fileupload:commons-fileupload:1.3"
+    compile "commons-httpclient:commons-httpclient:3.1"
+    compile "commons-net:commons-net:3.3"
+    compile "commons-collections:commons-collections:3.2.1"
+    compile "commons-beanutils:commons-beanutils:1.8.3"
+    compile "commons-validator:commons-validator:1.4.0"
+    compile "org.apache.commons:commons-pool2:2.3"
+    compile "org.apache.commons:commons-math:2.2"
+    compile "org.apache.commons:commons-compress:1.5"
+
+    //compile springframeworks
+    compile "org.springframework:spring-core:${springframeworkVersion}"
+    compile "org.springframework:spring-context:${springframeworkVersion}"
+    compile "org.springframework:spring-context-support:${springframeworkVersion}"
+    compile "org.springframework:spring-jdbc:${springframeworkVersion}"
+    compile "org.springframework:spring-beans:${springframeworkVersion}"
+    compile "org.springframework:spring-webmvc:${springframeworkVersion}"
+    compile "org.springframework:spring-tx:${springframeworkVersion}"
+    compile "org.springframework:spring-orm:${springframeworkVersion}"
+    compile "org.springframework:spring-aop:${springframeworkVersion}"
+    compile "org.springframework:spring-aspects:${springframeworkVersion}"
+    compile "org.springframework:spring-expression:${springframeworkVersion}"
+    compile "org.springframework:spring-test:${springframeworkVersion}"
+    compile "org.aspectj:aspectjweaver:${aspectjVersion}"
+
+    //compile springBatch
+    compile "org.springframework.batch:spring-batch-core:${springBatchVersion}"
+
+    //compile springfoxSwagger2
+    compile "io.springfox:springfox-swagger2:${springfoxSwagger2Version}"
+    compile "io.springfox:springfox-swagger-ui:${springfoxSwagger2Version}"
+
+    //compile loggers
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-core:${logbackVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
+    compile "me.moocar:logback-gelf:0.12"
+    compile "org.logback-extensions:logback-ext-spring:0.1.2"
+    compile "io.projectreactor:reactor-logback:2.0.3.RELEASE"
+    compile "org.codehaus.groovy:groovy-all:2.4.3" // groovy for logback
+
+    //compile connectionPools
+    compile "org.apache.commons:commons-dbcp2:2.1.1"
+
+    //compile jdbcDrivers
+    compile "mysql:mysql-connector-java:5.1.16"
+
+    //compile redis
+    compile "org.springframework.data:spring-data-redis:${springDataRedisVersion}"
+    compile "redis.clients:jedis:${jedisVersion}"
+
+    //compile guava
+    compile "com.google.guava:guava:${guavaVersion}"
+
+    //compile javaee
+    compile "javax.inject:javax.inject:1"
+    compile 'javax.annotation:jsr250-api:1.0'
+
+    //compile validation
+    compile "org.hibernate:hibernate-validator:5.4.1.Final"
+    compile "org.glassfish:javax.el:3.0.1-b08"
+
+    //compile json
+    compile "com.fasterxml.jackson.core:jackson-databind:${jackson2Version}"
+    compile "com.fasterxml.jackson.core:jackson-annotations:${jackson2Version}"
+    compile "com.fasterxml.jackson.core:jackson-core:${jackson2Version}"
+
+    //compile httpclient
+    compile "org.apache.httpcomponents:httpclient:4.5.1"
+
+    //compile mail
+    compile "com.sun.mail:javax.mail:1.5.1"
+
+    //compile jpa
+    compile "org.hibernate:hibernate-core:${hibernateVersion}"
+    compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
+    compile "org.springframework.data:spring-data-jpa:${springDataJpaVersion}"
+    compile "com.mysema.querydsl:querydsl-core:${queryDslVersion}"
+    compile "com.mysema.querydsl:querydsl-jpa:${queryDslVersion}"
+
+    //test compiles
+    testCompile "junit:junit:${junitVersion}"
+    testCompile "org.springframework:spring-test:${springframeworkVersion}"
+}

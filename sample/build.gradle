@@ -1,0 +1,34 @@
+buildscript {
+    apply from: "file:infrastructure/src/main/resources/gradle-script/buildscript.gradle"
+}
+
+apply from: "file:infrastructure/src/main/resources/gradle-script/plugins.gradle"
+
+allprojects {}
+
+subprojects {
+    group = 'com.profullstack'
+    version = '0.0.1'
+
+    apply from: java8Plugin
+    apply from: springPlugin
+    //apply plugin: 'idea'
+}
+
+project(':domain'){
+    dependencies{
+        compile project(':infrastructure')
+    }
+}
+
+project(':batch') {
+    dependencies {
+        compile project(':domain')
+    }
+}
+
+project(':web'){
+    dependencies{
+        compile project(':domain')
+    }
+}

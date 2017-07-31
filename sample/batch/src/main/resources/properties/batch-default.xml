@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="jtemp.jdbc.driverClassName">com.mysql.jdbc.Driver</entry>
+    <entry key="jtemp.jdbc.url">jdbc:mysql://localhost:3306/jtemp?characterSetResults=utf8</entry>
+    <entry key="jtemp.jdbc.username">root</entry>
+    <entry key="jtemp.jdbc.password">root</entry>
+
+    <entry key="jtemp.mongodb.url">mongodb://localhost:27017</entry>
+</properties>

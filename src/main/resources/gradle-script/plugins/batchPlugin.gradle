@@ -1,0 +1,15 @@
+jar {
+    archiveName = "${baseName}.${extension}"
+}
+
+task batchPackage( type:Zip, dependsOn: jar ) {
+    description = 'batch distribution file packaging'
+    extension = "zip"
+    archiveName = "${baseName}.${extension}"
+
+    from jar.outputs.files
+    from(configurations.runtime)
+/*    from(configurations.runtime) {
+        into('lib')
+    }*/
+}

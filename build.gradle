@@ -1,0 +1,12 @@
+buildscript {
+    apply from: "file:src/main/resources/gradle-script/buildscript.gradle"
+}
+
+apply from: "file:src/main/resources/gradle-script/plugins.gradle"
+
+group = 'com.profullstack'
+version = '0.0.1'
+
+apply from: java8Plugin
+apply from: springPlugin
+//apply plugin: 'idea'

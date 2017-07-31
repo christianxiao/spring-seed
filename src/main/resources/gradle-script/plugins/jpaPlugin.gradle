@@ -1,0 +1,86 @@
+ext {
+    jpaMetamodelGeneratedDir = 'src/generated/java-jpa'
+    oldQueryDslMetamodelGeneratedDir = 'src/generated/java-querydsl'
+}
+
+configurations {
+    jpaMetamodelGen {
+        extendsFrom compile
+    }
+}
+
+afterEvaluate {
+    logger.info "[jpaModelGen-${project.name}] afterEvaluate for jpaModelGen - ${project.name}"
+    configurations.runtime.resolvedConfiguration.resolvedArtifacts.each { raf ->
+        def cid = raf.getModuleVersion().getId()
+        logger.debug "[jpaModelGen-${project.name}] resolved deps ${cid.group}:${cid.name}:${cid.version}"
+
+        if (cid.group.equals('com.mysema.querydsl') && cid.name.equals('querydsl-core')) {
+            def queryDslAptVersion = cid.version
+            logger.info "[jpaModelGen-${project.name}] querydsl-apt version ${queryDslAptVersion}"
+            dependencies {
+                jpaMetamodelGen "com.mysema.querydsl:querydsl-apt:${queryDslAptVersion}"
+            }
+        }
+
+        if (cid.group.equals('org.hibernate') && cid.name.equals('hibernate-core')) {
+            def hibernateJpaModelGenVersion = cid.version
+            if (cid.version.startsWith('4.2')) {
+                hibernateJpaModelGenVersion = '1.3.0.Final'
+            }
+
+            logger.info "[jpaModelGen-${project.name}] hibernate-jpamodelgen version ${hibernateJpaModelGenVersion}"
+
+            dependencies {
+                jpaMetamodelGen "org.hibernate:hibernate-jpamodelgen:${hibernateJpaModelGenVersion}"
+            }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir jpaMetamodelGeneratedDir
+        }
+    }
+}
+
+task generateJpaMetamodel(type: JavaCompile) {
+    def targetDir = file(jpaMetamodelGeneratedDir)
+    def compiledDestinationDir = "${buildDir}/tmp/apt-jpa"
+    doFirst {
+        println "# Generating JPA Metamodels..."
+
+        delete(targetDir)
+        delete(file(oldQueryDslMetamodelGeneratedDir))
+        targetDir.mkdirs()
+    }
+
+    classpath = configurations.jpaMetamodelGen
+    source = sourceSets.main.java
+    destinationDir = file(compiledDestinationDir)
+
+    options.define(
+            compilerArgs: [
+                    '-proc:only',
+                    '-encoding', 'utf-8',
+                    '-s', targetDir.absolutePath,
+                    '-processor', 'org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor,com.mysema.query.apt.jpa.JPAAnnotationProcessor'
+            ]
+    )
+
+    outputs.upToDateWhen { false }
+}
+
+task cleanGenerateSources {
+    doLast {
+        delete(file(jpaMetamodelGeneratedDir))
+    }
+}
+
+task generateSources {
+}
+
+compileJava.dependsOn generateSources
+generateSources.dependsOn cleanGenerateSources, generateJpaMetamodel
