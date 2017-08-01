@@ -1,6 +1,6 @@
 package com.profullstack.springseed.jproject.domain;
 
-import com.profullstack.springseed.infrastructure.profile.ProfileApplicationContextInitializer;
+import com.profullstack.springseed.core.profile.ProfileApplicationContextInitializer;
 import com.profullstack.springseed.jproject.domain.configuration.DomainContextConfig;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

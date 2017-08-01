@@ -1,7 +1,7 @@
 package com.profullstack.springseed.jproject.web.configuration;
 
-import com.profullstack.springseed.infrastructure.web.restapi.EnableJwtConfig;
-import com.profullstack.springseed.infrastructure.web.restapi.EnableSpringSeedRestApiMvc;
+import com.profullstack.springseed.core.web.restapi.EnableJwtConfig;
+import com.profullstack.springseed.core.web.restapi.EnableSpringSeedRestApiMvc;
 import com.profullstack.springseed.jproject.web.components.api.Apis;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

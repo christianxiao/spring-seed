@@ -1,6 +1,6 @@
 package com.profullstack.springseed.jproject.domain.components.service;
 
-import com.profullstack.springseed.infrastructure.redis.ExpirableCacheable;
+import com.profullstack.springseed.core.redis.ExpirableCacheable;
 import com.profullstack.springseed.jproject.domain.components.model.User;
 import com.profullstack.springseed.jproject.domain.components.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

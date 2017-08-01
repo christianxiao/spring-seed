@@ -1,6 +1,6 @@
 package com.profullstack.springseed.jproject.batch;
 
-import com.profullstack.springseed.infrastructure.profile.ProfileApplicationContextInitializer;
+import com.profullstack.springseed.core.profile.ProfileApplicationContextInitializer;
 import com.profullstack.springseed.jproject.batch.configuration.BatchContextConfig;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

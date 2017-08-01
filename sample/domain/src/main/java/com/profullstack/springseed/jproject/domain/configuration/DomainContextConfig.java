@@ -1,8 +1,8 @@
 package com.profullstack.springseed.jproject.domain.configuration;
 
-import com.profullstack.springseed.infrastructure.jpa.EnableSpringSeedJpa;
-import com.profullstack.springseed.infrastructure.redis.EnableSpringSeedRedis;
-import com.profullstack.springseed.infrastructure.redis.cacheExpiration;
+import com.profullstack.springseed.core.jpa.EnableSpringSeedJpa;
+import com.profullstack.springseed.core.redis.EnableSpringSeedRedis;
+import com.profullstack.springseed.core.redis.cacheExpiration;
 import com.profullstack.springseed.jproject.domain.components.Domains;
 import com.profullstack.springseed.jproject.domain.components.model.Group;
 import com.profullstack.springseed.jproject.domain.components.repository.UserRepository;

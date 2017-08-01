@@ -1,6 +1,6 @@
 package com.profullstack.springseed.jproject.batch.components;
 
-import com.profullstack.springseed.infrastructure.batch.AbstractTaskletJob;
+import com.profullstack.springseed.core.batch.AbstractTaskletJob;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepContribution;

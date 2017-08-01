@@ -7,6 +7,7 @@ apply from: "file:src/main/resources/gradle-script/plugins.gradle"
 group = 'com.profullstack'
 version = '0.0.2'
 
+//Used by jcenterPlugin
 ext {
     description = 'A common J2EE seed project for Spring Framework family applications.'
     url = 'https://github.com/profullstack/spring-seed'

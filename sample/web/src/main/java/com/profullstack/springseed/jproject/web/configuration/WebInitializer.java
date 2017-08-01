@@ -1,6 +1,6 @@
 package com.profullstack.springseed.jproject.web.configuration;
 
-import com.profullstack.springseed.infrastructure.web.CommonWebInitializer;
+import com.profullstack.springseed.core.web.CommonWebInitializer;
 import com.profullstack.springseed.jproject.domain.configuration.DomainContextConfig;
 
 /**

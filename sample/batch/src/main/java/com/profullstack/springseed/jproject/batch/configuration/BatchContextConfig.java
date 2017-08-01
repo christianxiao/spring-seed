@@ -1,6 +1,6 @@
 package com.profullstack.springseed.jproject.batch.configuration;
 
-import com.profullstack.springseed.infrastructure.batch.EnableSpringSeedBatchProcessing;
+import com.profullstack.springseed.core.batch.EnableSpringSeedBatchProcessing;
 import com.profullstack.springseed.jproject.batch.components.Batchs;
 import com.profullstack.springseed.jproject.domain.configuration.DomainContextConfig;
 import org.springframework.context.annotation.ComponentScan;

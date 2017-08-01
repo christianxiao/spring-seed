@@ -1,9 +1,9 @@
 package com.profullstack.springseed.jproject.web.components.api;
 
-import com.profullstack.springseed.infrastructure.web.restapi.AuthorizationHeaderRequest;
-import com.profullstack.springseed.infrastructure.web.restapi.EnableAuthorization;
-import com.profullstack.springseed.infrastructure.web.restapi.JwtTokenFactory;
-import com.profullstack.springseed.infrastructure.web.restapi.RestApiException;
+import com.profullstack.springseed.core.web.restapi.AuthorizationHeaderRequest;
+import com.profullstack.springseed.core.web.restapi.EnableAuthorization;
+import com.profullstack.springseed.core.web.restapi.JwtTokenFactory;
+import com.profullstack.springseed.core.web.restapi.RestApiException;
 import com.profullstack.springseed.jproject.domain.components.model.User;
 import com.profullstack.springseed.jproject.domain.components.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
