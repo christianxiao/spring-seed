@@ -1,5 +1,4 @@
-rootProject.name = 'spring-seed'
-include 'infrastructure'
+rootProject.name = 'spring-seed-sample'
 include 'web'
 include 'domain'
 include 'batch'

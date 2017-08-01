@@ -1,11 +1,11 @@
 ext {
-    buildscriptBaseUrl = "src/main/resources/gradle-script/plugins/"
+    buildscriptBaseUrl = buildscript.sourceFile.parent + "/plugins"
 
     java8Plugin = "${buildscriptBaseUrl}/java8Plugin.gradle"
     springPlugin = "${buildscriptBaseUrl}/springPlugin.gradle"
     flywayPlugin = "${buildscriptBaseUrl}/flywayPlugin.gradle"
     jpaPlugin = "${buildscriptBaseUrl}/jpaPlugin.gradle"
-    mavenUploadArchivesPlugin = "${buildscriptBaseUrl}/mavenUploadArchivesPlugin.gradle"
+    jcenterPlugin = "${buildscriptBaseUrl}/jcenterPlugin.gradle"
     batchPlugin = "${buildscriptBaseUrl}/batchPlugin.gradle"
     tomcatPlugin = "${buildscriptBaseUrl}/tomcatPlugin.gradle"
 }

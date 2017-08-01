@@ -17,10 +17,10 @@ public @interface EnableSpringSeedJpa {
 	String propertyPrefix() default "basicDataSource";
 
 	/**
-	 * Useful when you need mutiple dataSources
-	 * @return
+	 * Useful when you need mutiple dataSources.
+	 * @return Named used for transaction beans prefix.
      */
 	String beanNamePrefix() default "";
-	Class<?>[] baseEntityClasses();
+	Class<?>[] baseEntityClasses() default {};
 
 }

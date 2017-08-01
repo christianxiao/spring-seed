@@ -1,8 +1,24 @@
 buildscript {
-    apply from: "file:infrastructure/src/main/resources/gradle-script/buildscript.gradle"
+    repositories {
+        mavenCentral()
+        jcenter()
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "com.profullstack:spring-seed:0.0.1"
+        //delete "build/ext"
+        def jars = configurations.classpath.files as List<File>
+        //ant.unjar src: jars.find { it.name.matches '.*spring-seed.*' }, dest: 'gradle/ext'
+    }
+
+    apply from: "file:gradle/ext/gradle-script/buildscript.gradle"
 }
 
-apply from: "file:infrastructure/src/main/resources/gradle-script/plugins.gradle"
+apply from: "file:gradle/ext/gradle-script/plugins.gradle"
 
 allprojects {}
 
@@ -12,12 +28,13 @@ subprojects {
 
     apply from: java8Plugin
     apply from: springPlugin
-    //apply plugin: 'idea'
+
+    archivesBaseName = rootProject.name + "-" + archivesBaseName
 }
 
-project(':domain'){
-    dependencies{
-        compile project(':infrastructure')
+project(':domain') {
+    dependencies {
+        compile "com.profullstack:spring-seed:0.0.1"
     }
 }
 

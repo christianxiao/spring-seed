@@ -1,1 +1,2 @@
-apply from: tomcatPlugin
+//apply from: tomcatPlugin
+//applyscript 'com.profullstack:spring-seed:0.0.1/gradle-script/plugins/tomcatPlugin.gradle'

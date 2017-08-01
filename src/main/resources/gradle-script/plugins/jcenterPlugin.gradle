@@ -1,0 +1,122 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'java-library'
+
+apply plugin: com.jfrog.bintray.gradle.BintrayPlugin
+
+// maven upload scripts, ref: https://github.com/bintray/gradle-bintray-plugin
+/* sample config:
+ext {
+    description = 'An implementation of CJK MMSEG tokenizer algorithm with Sogou Dictionary.'
+    url = 'https://github.com/profullstack/cjk-mmseg.git'
+    bintrayOrg = "profullstack"
+    bintrayUser = "christianxiao"
+    bintryKey = "ffa0679e98c8107af0de9f37c9625a610193839d"
+}*/
+
+// Create the pom configuration:
+def pomConfig = {
+    description description
+    name project.name
+    url url
+
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "maven"
+        }
+    }
+    developers {
+        developer {
+            id ""
+            name ""
+            email ""
+        }
+    }
+
+    scm {
+        url url
+    }
+
+}
+
+
+if (JavaVersion.current().isJava8Compatible()) {
+    tasks.withType(Javadoc) {
+        // disable the crazy super-strict doclint tool in Java 8
+        //noinspection SpellCheckingInspection
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId project.group
+            artifactId project.name
+            version project.version
+            pom.withXml {
+                def root = asNode()
+                //root.appendNode('description', 'An implementation of CJK MMSEG tokenizer algorithm with Sogou Dictionary.')
+                //root.appendNode('name', 'cjkMmseg')
+                //root.appendNode('url', 'https://github.com/profullstack/cjkMmseg.git')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+String bintrayKeyValue = System.getProperty("jcenterPlugin.key");
+if(bintrayKeyValue != null){
+    project.ext['bintryKey'] = bintrayKeyValue
+}
+bintray {
+    user = bintrayUser
+    key = bintryKey
+    pkg {
+        repo = 'maven'
+        name = project.name
+        userOrg = bintrayOrg
+        desc = description
+        licenses = ['Apache-2.0']
+        vcsUrl = url
+        version {
+            name = project.version
+            desc = project.version
+            released  = new Date()
+            vcsTag = project.version
+        }
+    }
+    publications = ['MyPublication']
+}
