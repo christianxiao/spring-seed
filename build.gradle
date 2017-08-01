@@ -13,7 +13,7 @@ ext {
     url = 'https://github.com/profullstack/spring-seed'
     bintrayOrg = "profullstack"
     bintrayUser = "christianxiao"
-    bintryKey = "" //Your key provided by bintry, something like ffa0679e98c8107af0de9f37c9625a610193839d
+    bintryKey = "" //Your key provided by bintry, something like ffa0679e98c8107af0de9f37c9625a610193839d. Or add by -DjcenterPlugin.key=
 }
 
 apply from: java8Plugin
