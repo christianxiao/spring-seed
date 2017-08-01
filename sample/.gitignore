@@ -28,3 +28,5 @@ export.sql
 node_modules/
 npm-debug.log
 *.map
+
+deploy/mysql/data

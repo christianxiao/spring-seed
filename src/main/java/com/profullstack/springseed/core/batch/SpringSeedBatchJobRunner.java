@@ -26,7 +26,7 @@ import java.util.*;
 
 /**
  * Created by christianxiao on 7/23/17.
- * Usage: java -cp "batch/*" com.profullstack.springseed.core.batch.SpringSeedBatchJobRunner com.profullstack.springseed.jproject.batch.configuration.BatchContextConfig sampleJob param1=value1
+ * Usage: java -cp "batch/*" com.profullstack.springseed.core.batch.SpringSeedBatchJobRunner com.profullstack.springseed.sample.batch.configuration.BatchContextConfig sampleJob param1=value1
  */
 public class SpringSeedBatchJobRunner {
     protected static final Log logger = LogFactory.getLog(SpringSeedBatchJobRunner.class);
