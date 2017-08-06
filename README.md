@@ -128,7 +128,7 @@ public @interface ExpirableCacheable {
 - A distributed lock implemantation ```SimpleRedisDlmLock``` based on Redis. Check [here](https://redis.io/topics/distlock) for more details.
 
 ### Batch module
-```@EnableBatchProcessing``` is the native Spring Batch configuration, but you need to set up the batch database to use it for Spring batch need somewhere to store its metadata. Sometimes we don't want to set up a batch db, so ```@EnableSpringSeedBatchProcessing``` is the replacement. It uses a in-memory Map to store the metadata, and a ResourcelessTransaction to handler transactions.  
+```@EnableBatchProcessing``` is the native Spring Batch configuration, but you need to set up the batch database to use it for Spring batch need somewhere to store its metadata. Sometimes we don't want to set up a batch db, so [```@EnableSpringSeedBatchProcessing```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/batch/EnableSpringSeedBatchProcessing.java) is the replacement. It uses a in-memory Map to store the metadata, and a ResourcelessTransaction to handle transactions.  
 ```
 @Configuration
 //@EnableBatchProcessing
@@ -138,7 +138,7 @@ public @interface ExpirableCacheable {
 public class BatchContextConfig {
 }
 ```
-Writing a simple batch job could also be complex, expecially when you just need a simple one step job. You need to define a job, a step and a tasklet. To simplify this process, you only need to extend the ```AbstractTaskletJob```.
+Writing a simple batch job could also be complex, expecially when you just need a simple one step job. You need to define a job, a step and a tasklet. To simplify this process, you only need to extend the [```AbstractTaskletJob```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/batch/AbstractTaskletJob.java).
 ```
 @Component
 @Slf4j
@@ -155,7 +155,7 @@ public class SampleJob extends AbstractTaskletJob {
     }
 }
 ```
-Finally, the native job runner ```CommandLineJobRunner``` dose not support ```ApplicationContextInitializer```, so we have to write another job runner ```SpringSeedBatchJobRunner```. 
+Finally, the native job runner ```CommandLineJobRunner``` dose not support ```ApplicationContextInitializer```, so we have to write another job runner [```SpringSeedBatchJobRunner```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/batch/SpringSeedBatchJobRunner.java). 
 ```
 Usage: java -cp "batch/*" com.profullstack.springseed.core.batch.SpringSeedBatchJobRunner com.profullstack.springseed.sample.batch.configuration.BatchContextConfig sampleJob param1=value1
 ```
