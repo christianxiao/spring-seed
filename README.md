@@ -170,15 +170,15 @@ public class ApiServletConfig extends WebMvcConfigurerAdapter {
 }
 ```
 #### RESTful API error handler
-Provide a basic ```[RestApiException](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/RestApiException.java)``` for you to throw Api exceptions, and all exceptions will be catched by ```[RestApiExceptionAdvice](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/RestApiExceptionAdvice.java)```, then send a ```[RestApiErrorResponse](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/RestApiErrorResponse.java)``` to client.
+Provide a basic [```RestApiException```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/RestApiException.java) for you to throw Api exceptions, and all exceptions will be catched by [```RestApiExceptionAdvice```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/RestApiExceptionAdvice.java), then send a [```RestApiErrorResponse```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/RestApiErrorResponse.java) to client.
 #### HTTP Authorization Header Parser
-Provide a ```[HttpAuthorizationHeaderParser](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/HttpAuthorizationHeaderParser.java)``` to parse the Authorization header, the header format follows the ref: http://www.ietf.org/rfc/rfc2617.txt
+Provide a [```HttpAuthorizationHeaderParser```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/HttpAuthorizationHeaderParser.java) to parse the Authorization header, the header format follows the ref: http://www.ietf.org/rfc/rfc2617.txt
 ```
  * Implementation ref: http://www.ietf.org/rfc/rfc2617.txt
  * schema: Authorization: Digest username="Mufasa",realm="testrealm@host.com" ....
 ``` 
 #### HTTP RESTful API Token Implementation
-Provide a ```[JwtTokenFactory](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/JwtTokenFactory.java)``` to implement the JSON Web Token standard, a non database based solution, check ref: https://en.wikipedia.org/wiki/JSON_Web_Token.  
+Provide a [```JwtTokenFactory```](https://github.com/profullstack/spring-seed/blob/master/src/main/java/com/profullstack/springseed/core/web/restapi/JwtTokenFactory.java) to implement the JSON Web Token standard, a non database based solution, check ref: https://en.wikipedia.org/wiki/JSON_Web_Token.  
 Another much simple token implementation ```SimpleAccessToken```, it's a database based solution.
 ### Gradle script support
 All build scripts are inside [here](https://github.com/profullstack/spring-seed/tree/master/src/main/resources/gradle-script). Use it like in the [sample project](https://github.com/profullstack/spring-seed/blob/master/sample/build.gradle):
